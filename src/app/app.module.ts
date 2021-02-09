@@ -10,11 +10,12 @@ import { UserComponent } from './components/user/user.component';
 import { FullUserComponent } from './components/full-user/full-user.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'users', pathMatch: 'full'},
+  // {path: '', redirectTo: 'users', pathMatch: 'full'},
   {path: 'users', component: UsersComponent, resolve: {usersData: UserResolveService},
   children: [
     {path: ':id', component: FullUserComponent}
   ]},
+  {path: 'posts', loadChildren: ()=> import('./modules/post/post.module').then(m => m.PostModule)}
   ];
 
 @NgModule({
